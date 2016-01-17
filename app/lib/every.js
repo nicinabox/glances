@@ -15,10 +15,20 @@ var toMs = function (str) {
 
 module.exports = function (intervalStr, fn) {
   var interval = toMs(intervalStr)
-  fn()
+
+  var done = function () {
+    setTimeout(callFn, interval)
+  }
+
+  var callFn = function () {
+    var p = fn(done)
+    if (p instanceof Promise) p.then(done)
+  }
+
+  fn(done)
 
   if (interval) {
-    return setInterval(fn, interval)
+    return setTimeout(callFn, interval)
   } else {
     console.log('=>', 'No interval for', intervalStr)
   }
