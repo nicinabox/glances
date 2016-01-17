@@ -9,8 +9,8 @@ var app = express()
 var PORT = process.env.PORT || 4567
 
 app.use(sass({
-  src: 'stylesheets',
-  dest: '../public',
+  src: './app/stylesheets',
+  dest: 'public',
   debug: true,
   outputStyle: 'compressed',
 }))
