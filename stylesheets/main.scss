@@ -18,17 +18,17 @@ body {
 }
 
 .tile {
+  box-shadow: 0 1px 10px rgba(#000, 0.4);
   margin: 5px;
   min-width: 300px;
   min-height: 300px;
-  flex-grow: 1;
-
   padding: 35px 12px;
   text-align: center;
   background: #5C6A79;
   color: #fff;
   position: relative;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   align-items: center;
 
