@@ -1,6 +1,6 @@
 # glances
 
-A heads-up dashboard for displaying thing-statuses overhead.
+A heads-up dashboard for displaying thing-statuses.
 
 ![](screenshot.png)
 
