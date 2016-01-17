@@ -4,16 +4,19 @@ var timestamp = function () {
   return moment().format('D MMM YYYY HH:MM:SS')
 }
 
+var makeLine = function (prefix, args) {
+  return [
+    '[' + timestamp() + ']',
+    prefix
+  ].concat(Array.prototype.slice.call(args))
+}
+
 module.exports = {
   log: function () {
-    var args = Array.prototype.slice.call(arguments)
-    var line = ['[' + timestamp() + ']', '=>'].concat(args)
-    console.log.apply(console, line)
+    console.log.apply(console, makeLine('=>', arguments))
   },
 
   error: function () {
-    var args = Array.prototype.slice.call(arguments)
-    var line = ['[' + timestamp() + ']', '!!'].concat(args)
-    console.warn.apply(console, line)
+    console.warn.apply(console, makeLine('!!', arguments))
   }
 }
