@@ -13,9 +13,9 @@
   "dependencies": {
     "axios": "^0.8.1",
     "express": "^4.13.3",
-    "external-ip": "^0.2.4",
     "glob": "^6.0.4",
     "lodash": "^4.0.0",
+    "moira": "^1.1.2",
     "moment": "^2.11.1",
     "node-sass-middleware": "^0.9.7",
     "react": "^0.14.6",
