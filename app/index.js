@@ -9,11 +9,11 @@ var PORT = process.env.PORT || 4567
 
 app.use(sass({
   src: 'stylesheets',
-  dest: path.join(__dirname, 'public'),
+  dest: '../public',
   debug: true,
   outputStyle: 'compressed',
 }))
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '../public')))
 
 var server = app.listen(PORT, function () {
   console.log('=>', 'Listening on', PORT)
@@ -30,5 +30,5 @@ io.on('connection', function (socket) {
 })
 
 app.get('/', function (req, res) {
-  res.send(200)
+  res.sendStatus(200)
 })
