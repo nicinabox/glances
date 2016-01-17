@@ -57,7 +57,7 @@ module.exports = React.createClass({
         <h1>{this.props.title}</h1>
         {this.renderValue(this.props.value)}
         <footer>
-          <p className="more-info">{this.props.more}</p>
+          <p className="more-info">{this.props.moreInfo}</p>
           <p className="updated-at">Updated {this.state.updatedAgo}</p>
         </footer>
       </div>
