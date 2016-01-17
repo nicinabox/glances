@@ -5,7 +5,7 @@ var requireTiles = require('./lib/requireTiles')
 
 var app = express()
 
-var PORT = 4567
+var PORT = process.env.PORT || 4567
 
 app.use(sass({
   src: 'stylesheets',
