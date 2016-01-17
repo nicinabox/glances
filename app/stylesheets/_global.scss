@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Lato, Helvetica Neue, serif;
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 0;
+  background: #2c3e50;
+}
+
+.container {
+  margin: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
