@@ -10,7 +10,8 @@
   flex-grow: 1;
   flex-direction: column;
   align-items: center;
-  min-width: 250px;
+  justify-content: space-between;
+  min-width: 300px;
   min-height: 253px;
 
   h1 {
@@ -26,6 +27,7 @@
     line-i: 1.1;
     font-weight: 700;
     margin: 15px 0;
+    text-shadow: 0 1px 1px rgba(#000, 0.4);
   }
 
   ul {
@@ -53,11 +55,7 @@
   }
 
   footer {
-    // width: 100%;
-    // left: 0;
-    // bottom: 12px;
-    // position: absolute;
-    margin-bottom: -25px;
+    margin-bottom: -18px;
 
     p {
       font-size: 20px;
