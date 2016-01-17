@@ -17,7 +17,6 @@
     "glob": "^6.0.4",
     "lodash": "^4.0.0",
     "moment": "^2.11.1",
-    "net-ping": "^1.1.12",
     "node-sass-middleware": "^0.9.7",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
