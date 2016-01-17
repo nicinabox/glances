@@ -28,7 +28,7 @@ module.exports = function (intervalStr, fn) {
   fn(done)
 
   if (interval) {
-    return setTimeout(callFn, interval)
+    setTimeout(callFn, interval)
   } else {
     console.log('=>', 'No interval for', intervalStr)
   }
