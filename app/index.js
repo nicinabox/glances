@@ -22,12 +22,10 @@ var server = app.listen(PORT, function () {
 
 var io = require('socket.io')(server)
 
+requireTiles(io)
+
 io.on('connection', function (socket) {
   logger.log('User connected')
-
-  requireTiles(io, function (tiles) {
-    socket.emit('tiles', tiles)
-  })
 })
 
 app.get('/', function (req, res) {
