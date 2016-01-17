@@ -6,11 +6,11 @@ A heads-up dashboard for displaying thing-statuses overhead.
 
 ## Overview
 
-Glances is made up of Blocks and works primarily over websockets. Add your own blocks in `blocks/`.
+Glances is made up of Tiles and works primarily over websockets. Add your own tiles in `tiles/`.
 
-## Block Anatomy
+## Tile Anatomy
 
-A block may be either a function or an object and include the following keys:
+A tile may be either a function or an object and include the following keys:
 
 * title
 * value

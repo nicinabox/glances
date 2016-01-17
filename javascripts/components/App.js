@@ -3,29 +3,29 @@ var clone = require('lodash/clone')
 var io = require('socket.io-client')
 var React = require('react')
 
-var Block = require('./Block')
+var Tile = require('./Tile')
 var socket = io()
 
 module.exports = React.createClass({
   getInitialState() {
     return {
-      blocks: []
+      tiles: []
     }
   },
 
   componentDidMount() {
-    socket.on('blocks', (blocks) => {
-      this.setState({ blocks })
+    socket.on('tiles', (tiles) => {
+      this.setState({ tiles })
     })
 
-    socket.on('block-change', (block) => {
-      var index = findIndex(this.state.blocks, { id: block.id })
+    socket.on('tile-change', (tile) => {
+      var index = findIndex(this.state.tiles, { id: tile.id })
       if (index > -1) {
-        var newBlocks = clone(this.state.blocks)
-        newBlocks[index] = block
+        var newTiles = clone(this.state.tiles)
+        newTiles[index] = tile
 
         this.setState({
-          blocks: newBlocks
+          tiles: newTiles
         })
       }
     })
@@ -34,7 +34,7 @@ module.exports = React.createClass({
   render() {
     return (
       <div className="container">
-        {this.state.blocks.map((props, i) => <Block key={`block-${i}`} {...props} />)}
+        {this.state.tiles.map((props, i) => <Tile key={`tile-${i}`} {...props} />)}
       </div>
     )
   }

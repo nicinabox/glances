@@ -1,7 +1,7 @@
 var path = require('path')
 var sass = require('node-sass-middleware')
 var express = require('express')
-var requireBlocks = require('./lib/requireBlocks')
+var requireTiles = require('./lib/requireTiles')
 
 var app = express()
 
@@ -24,8 +24,8 @@ var io = require('socket.io')(server)
 io.on('connection', function (socket) {
   console.log('=>', 'User connected')
 
-  requireBlocks(io, function (blocks) {
-    socket.emit('blocks', blocks)
+  requireTiles(io, function (tiles) {
+    socket.emit('tiles', tiles)
   })
 })
 

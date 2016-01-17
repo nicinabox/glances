@@ -47,10 +47,10 @@ module.exports = React.createClass({
   },
 
   render() {
-    var blockClassNames = ['block', this.props.color].join(' ')
+    var tileClassNames = ['tile', this.props.color].join(' ')
 
     return (
-      <div id={this.props.id} className={blockClassNames}>
+      <div id={this.props.id} className={tileClassNames}>
         <h1>{this.props.title}</h1>
         {this.renderValue(this.props.value)}
         <footer>
