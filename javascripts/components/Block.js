@@ -47,9 +47,6 @@ module.exports = React.createClass({
   },
 
   render() {
-    var sizes = this.props.size.split('x')
-    var w = sizes[0]
-    var h = sizes[1]
     var blockClassNames = ['block', this.props.color].join(' ')
 
     return (
