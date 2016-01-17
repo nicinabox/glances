@@ -22,7 +22,7 @@ var server = app.listen(PORT, function () {
 var io = require('socket.io')(server)
 
 io.on('connection', function (socket) {
-  console.log('=>', 'user connected')
+  console.log('=>', 'User connected')
 
   requireBlocks(io, function (blocks) {
     socket.emit('blocks', blocks)
