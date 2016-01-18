@@ -51,7 +51,7 @@ module.exports = function (intervalStr, desc, fn) {
 
   var caller = desc || path.basename(stack()[1].getFileName())
   var interval = toMs(intervalStr)
-  var done = () => setTimeout(callFn, interval)
+  var next = () => setTimeout(callFn, interval)
 
   if (!interval) {
     console.log('=>', 'No interval for', intervalStr)
@@ -60,8 +60,8 @@ module.exports = function (intervalStr, desc, fn) {
   var callFn = () => {
     logger.log('Every', normalizeInterval(intervalStr), caller)
 
-    var p = fn(done)
-    if (p instanceof Promise) p.then(done)
+    var p = fn(next)
+    if (p instanceof Promise) p.then(next)
   }
 
   callFn()
