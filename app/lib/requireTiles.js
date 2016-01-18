@@ -4,7 +4,7 @@ var sortBy = require('lodash/sortBy')
 var findIndex = require('lodash/findIndex')
 var decorateTile = require('./decorateTile')
 
-var tiles
+var tiles = []
 
 var emitter = function (io) {
   return function (data) {
@@ -37,7 +37,7 @@ module.exports = function (io) {
   }
 
   return new Promise(function (resolve, reject) {
-    if (tiles) {
+    if (tiles.length) {
       resolve(tiles)
     } else {
       glob('tiles/*.js', function (err, files) {
