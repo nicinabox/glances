@@ -1,6 +1,6 @@
 {
   "name": "glances-app",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A heads-up dashboard for displaying thing-statuses",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,10 @@
     "start": "nodemon server.js",
     "prepublish": "webpack -p"
   },
-  "keywords": ["dashboard", "hud"],
+  "keywords": [
+    "dashboard",
+    "hud"
+  ],
   "author": "nicinabox",
   "repository": "https://github.com/nicinabox/glances",
   "license": "ISC",
