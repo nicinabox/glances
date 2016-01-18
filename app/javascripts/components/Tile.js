@@ -32,10 +32,14 @@ module.exports = React.createClass({
       return (
         <ul>
           {value.map((v, i) => {
-            return (
+            return isArray(v) ? (
               <li key={`li-${i}`}>
                 <span>{v[0]}</span>
                 <span>{v[1]}</span>
+              </li>
+            ) : (
+              <li key={`li-${i}`}>
+                <span>{v}</span>
               </li>
             )
           })}
