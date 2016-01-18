@@ -2,25 +2,45 @@ var path = require('path')
 var stack = require('callsite')
 var logger = require('./logger')
 
+var units = {
+  second: 1000,
+  minute: 1000 * 60,
+  hour: 1000 * 60 * 60,
+  day: 1000 * 60 * 60 * 24,
+}
+
+var matchIntervalParts = function (str) {
+  return str.match(/(\d+)\s?(\w+)/)
+}
+
 var toMs = function (str) {
-  var units = {
-    second: 1000,
-    minute: 1000 * 60,
-    hour: 1000 * 60 * 60,
-    day: 1000 * 60 * 60 * 24,
-  }
-
-  var matches = str.match(/(\d+)\s?(\w+)/)
+  var matches = matchIntervalParts(str)
   var interval = +matches[1]
+  var duration = units[getUnit(str)]
 
-  var unit = Object.keys(units).filter((u) => {
+  return duration * interval
+}
+
+var getInterval = function (str) {
+  var matches = matchIntervalParts(str)
+  return +matches[1]
+}
+
+var getUnit = function (str) {
+  var matches = matchIntervalParts(str)
+
+  return Object.keys(units).filter((u) => {
     var re = new RegExp(`^${matches[2]}?`)
     return re.test(u)
   })[0]
+}
 
-  var duration = units[unit]
+var normalizeInterval = function (str) {
+  var unit = getUnit(str)
+  var interval = getInterval(str)
+  var baseStr = `${interval} ${unit}`
 
-  return duration * interval
+  return interval == 1 ? baseStr : `${baseStr}s`
 }
 
 module.exports = function (intervalStr, desc, fn) {
@@ -28,7 +48,6 @@ module.exports = function (intervalStr, desc, fn) {
     fn = desc
     desc = ''
   }
-
 
   var caller = desc || path.basename(stack()[1].getFileName())
   var interval = toMs(intervalStr)
@@ -39,7 +58,7 @@ module.exports = function (intervalStr, desc, fn) {
   }
 
   var callFn = () => {
-    logger.log('Every', intervalStr, caller)
+    logger.log('Every', normalizeInterval(intervalStr), caller)
 
     var p = fn(done)
     if (p instanceof Promise) p.then(done)
