@@ -1,6 +1,6 @@
 var React = require('react')
 var moment = require('moment')
-var _ = require('lodash')
+var isArray = require('lodash/isArray')
 
 module.exports = React.createClass({
   getInitialState() {
@@ -28,7 +28,7 @@ module.exports = React.createClass({
   },
 
   renderValue(value) {
-    if (_.isArray(value)) {
+    if (isArray(value)) {
       return (
         <ul>
           {value.map((v, i) => {
