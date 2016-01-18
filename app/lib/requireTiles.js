@@ -2,6 +2,7 @@ var glob = require('glob')
 var path = require('path')
 var sortBy = require('lodash/sortBy')
 var findIndex = require('lodash/findIndex')
+var reject = require('lodash/reject')
 var decorateTile = require('./decorateTile')
 
 var tiles = []
@@ -13,19 +14,23 @@ var emitter = function (io) {
 
     tiles[index] = tile
 
-    io.emit('tiles', sortBy(tiles, 'position'))
+    io.emit('tiles', nextTiles(tiles))
   }
+}
+
+var nextTiles = function (_tiles) {
+  return reject(sortBy(_tiles, 'position'), 'disabled')
 }
 
 module.exports = function (io) {
   var emit = emitter(io)
 
   io.on('connection', function (socket) {
-    socket.emit('tiles', sortBy(tiles, 'position'))
+    socket.emit('tiles', nextTiles(tiles))
   })
 
   var requireFiles = function (files) {
-    return sortBy(files.map(function (f) {
+    return nextTiles(files.map(function (f) {
       var tile = require(path.resolve(f))
 
       if (typeof tile == 'function') {
@@ -33,7 +38,7 @@ module.exports = function (io) {
       } else {
         return decorateTile(tile)
       }
-    }), 'position')
+    }))
   }
 
   return new Promise(function (resolve, reject) {
