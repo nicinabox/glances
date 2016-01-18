@@ -2,7 +2,7 @@
 
 A heads-up dashboard for displaying thing-statuses.
 
-![](screenshot.png)
+![](screenshot.png?raw=true)
 
 ## Overview
 
