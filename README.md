@@ -34,8 +34,8 @@ module.exports = function(emit) {
   every('5 minutes', function () {
     emit({
       name: 'Test',
-      value: isUp() ? '✓' : ':(', // `isUp` is a hypothetical function
-      color: isUp() ? 'green' : 'red'
+      value: isUp ? '✓' : ':(',
+      color: isUp ? 'green' : 'red'
     })
   })
 
@@ -46,3 +46,8 @@ module.exports = function(emit) {
 ```
 
 Tip: Treat your tile objects as immutable to avoid sneaky bugs.
+
+# TODO
+
+* [ ] More robust scheduler
+* [ ] More robust value types based on data structures or setting
