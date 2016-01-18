@@ -10,8 +10,8 @@ module.exports = function () {
   var server, io, app = express()
 
   app.use(sass({
-    src: './app/stylesheets',
-    dest: 'public',
+    src: path.join(__dirname, '../app/stylesheets'),
+    dest: path.join(__dirname, '../public'),
     debug: true,
     outputStyle: 'compressed',
   }))
