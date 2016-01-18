@@ -19,18 +19,6 @@ module.exports = React.createClass({
       tiles = reject(tiles, 'disabled')
       this.setState({ tiles })
     })
-
-    socket.on('tile-change', (tile) => {
-      var index = findIndex(this.state.tiles, { id: tile.id })
-      if (index > -1) {
-        var newTiles = clone(this.state.tiles)
-        newTiles[index] = tile
-
-        this.setState({
-          tiles: newTiles
-        })
-      }
-    })
   },
 
   render() {
