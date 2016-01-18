@@ -35,3 +35,11 @@ module.exports = function(emit) {
   }
 }
 ```
+
+## Usage
+
+1. Add glances to your `package.json`
+2. Require and call it to start the server: `require('glances')()`
+3. Add tiles to `tiles/`
+
+And remember: it's just JavaScript, there's nothing fancy here.
