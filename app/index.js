@@ -4,30 +4,32 @@ var express = require('express')
 var requireTiles = require('./lib/requireTiles')
 var logger = require('../utils/logger')
 
-var app = express()
-
 var PORT = process.env.PORT || 4567
 
-app.use(sass({
-  src: './app/stylesheets',
-  dest: 'public',
-  debug: true,
-  outputStyle: 'compressed',
-}))
-app.use(express.static(path.join(__dirname, '../public')))
+module.exports = function () {
+  var server, io, app = express()
 
-var server = app.listen(PORT, function () {
-  logger.log('Listening on', PORT)
-})
+  app.use(sass({
+    src: './app/stylesheets',
+    dest: 'public',
+    debug: true,
+    outputStyle: 'compressed',
+  }))
+  app.use(express.static(path.join(__dirname, '../public')))
 
-var io = require('socket.io')(server)
+  server = app.listen(PORT, function () {
+    logger.log('Listening on', PORT)
+  })
 
-requireTiles(io)
+  io = require('socket.io')(server)
 
-io.on('connection', function (socket) {
-  logger.log('User connected')
-})
+  requireTiles(io)
 
-app.get('/', function (req, res) {
-  res.sendStatus(200)
-})
+  io.on('connection', function (socket) {
+    logger.log('User connected')
+  })
+
+  app.get('/', function (req, res) {
+    res.sendStatus(200)
+  })
+}
