@@ -12,12 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.8.1",
     "callsite": "^1.0.0",
     "express": "^4.13.3",
     "glob": "^6.0.4",
     "lodash": "^4.0.0",
-    "moira": "^1.1.2",
     "moment": "^2.11.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
