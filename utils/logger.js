@@ -1,7 +1,7 @@
 var moment = require('moment')
 
 var timestamp = function () {
-  return moment().format('D MMM YYYY HH:MM:SS')
+  return moment().format('D MMM YYYY HH:mm:ss')
 }
 
 var makeLine = function (prefix, args) {
