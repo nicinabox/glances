@@ -1,1 +1,1 @@
-require('./app/index')()
+require('./index')()
