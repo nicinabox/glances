@@ -1,5 +1,6 @@
 var findIndex = require('lodash/findIndex')
 var clone = require('lodash/clone')
+var reject = require('lodash/reject')
 var io = require('socket.io-client')
 var React = require('react')
 
@@ -15,6 +16,7 @@ module.exports = React.createClass({
 
   componentDidMount() {
     socket.on('tiles', (tiles) => {
+      tiles = reject(tiles, 'disabled')
       this.setState({ tiles })
     })
 
