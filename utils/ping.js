@@ -4,9 +4,9 @@ var logger = require('./logger')
 module.exports = function (target) {
   return new Promise(function (resolve, reject) {
     exec(`ping -c 1 ${target}`, function (err, stdout, stderr) {
-      var isReceived = (/packets received/).test(stdout)
+      var isReceived = (/1 packets received/).test(stdout)
 
-      if (stderr) reject(isReceived)
+      if (!isReceived) reject(isReceived)
       resolve(isReceived)
     })
   })
