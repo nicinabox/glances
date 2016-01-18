@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.8.1",
+    "callsite": "^1.0.0",
     "express": "^4.13.3",
     "glob": "^6.0.4",
     "lodash": "^4.0.0",
