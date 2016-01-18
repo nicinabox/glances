@@ -15,3 +15,43 @@ body {
   display: flex;
   flex-flow: row wrap;
 }
+
+.status {
+  padding: 6px 10px;
+  background: rgba(#fff, 0.7);
+  color: #222;
+  text-align: center;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  z-index: 1;
+  font-size: 14px;
+  text-transform: uppercase;
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 6px;
+    background: #aaa;
+    border-radius: 10px;
+  }
+
+  &.status-connected {
+    .indicator {
+      background: $green;
+    }
+  }
+
+  &.status-disconnected {
+    .indicator {
+      background: $red;
+    }
+  }
+
+  &.status-reconnecting {
+    .indicator {
+      background: $orange;
+    }
+  }
+}
