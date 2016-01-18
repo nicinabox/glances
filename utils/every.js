@@ -54,7 +54,7 @@ module.exports = function (intervalStr, desc, fn) {
   var next = () => setTimeout(callFn, interval)
 
   if (!interval) {
-    console.log('=>', 'No interval for', intervalStr)
+    logger.log('No interval for', intervalStr)
   }
 
   var callFn = () => {
