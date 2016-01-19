@@ -73,6 +73,8 @@ For ticker and list types, pass a key/value object, a flat array, or an array of
 * [ ] Pluggable, reusable tiles (should be possible currently, but need to investigate)
 * [ ] Management UI to search, install, and configure tiles
 
+See [NEXT.md](NEXT.md) for brainstorming on upcoming todos.
+
 ## Prior Art
 
 Glances was inspired by, and borrows heavily from [Dashing](http://dashing.io/) by Shopify. 
