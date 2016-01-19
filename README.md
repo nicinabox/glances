@@ -32,12 +32,13 @@ Example:
 
 ```javascript
 module.exports = function(emit) {
-  every('5 minutes', function () {
+  every('5 minutes', function (next) {
     emit({
       name: 'Test',
       value: isUp ? '✓' : ':(',
       color: isUp ? 'green' : 'red'
     })
+    next()
   })
 
   return {
