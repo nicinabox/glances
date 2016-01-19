@@ -1,6 +1,6 @@
 var React = require('react')
 var moment = require('moment')
-var isArray = require('lodash/isArray')
+var Value = require('./Value')
 
 module.exports = React.createClass({
   getInitialState() {
@@ -27,36 +27,14 @@ module.exports = React.createClass({
     clearInterval(this.tick)
   },
 
-  renderValue(value) {
-    if (isArray(value)) {
-      return (
-        <ul>
-          {value.map((v, i) => {
-            return isArray(v) ? (
-              <li key={`li-${i}`}>
-                <span>{v[0]}</span>
-                <span>{v[1]}</span>
-              </li>
-            ) : (
-              <li key={`li-${i}`}>
-                <span>{v}</span>
-              </li>
-            )
-          })}
-        </ul>
-      )
-    } else {
-      return <h2>{this.props.value}</h2>
-    }
-  },
-
   render() {
     var tileClassNames = ['tile', this.props.color].join(' ')
 
     return (
       <div id={this.props.id} className={tileClassNames}>
         <h1>{this.props.title}</h1>
-        {this.renderValue(this.props.value)}
+        <Value {...this.props} />
+
         <footer>
           <p className="more-info">{this.props.moreInfo}</p>
           <p className="updated-at">Updated {this.state.updatedAgo}</p>
