@@ -13,10 +13,12 @@ var makeLine = function (prefix, args) {
 
 module.exports = {
   log: function () {
+    if (process.env.NODE_ENV === 'test') return
     console.log.apply(console, makeLine('=>', arguments))
   },
 
   error: function () {
+    if (process.env.NODE_ENV === 'test') return
     console.warn.apply(console, makeLine('!!', arguments))
   }
 }
