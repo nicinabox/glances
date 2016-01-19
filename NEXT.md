@@ -10,10 +10,12 @@
 Tile plugins should be standalone, but may need configuration.
 
 ```javascript
+// tile/counter-example.js
+
 export default {  
   tile: {
-    title: 'Example',
-    value: 'Hello'
+    title: 'Counter',
+    value: 0
   },
   
   options: [
@@ -32,9 +34,12 @@ export default {
 
   render({ emit, every }, tile, options) {
     every(options.interval, function () {
-      return Promise.resolve()
+      var newTile = Object.assign({}, tile, {
+        value: tile.value + 30
+      }
+      
+      return Promise.resolve(newTile)
     })
   }
 }
-
 ```
