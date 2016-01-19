@@ -6,7 +6,7 @@ A heads-up dashboard for displaying thing-statuses.
 
 ## Overview
 
-Glances is made up of Tiles and works primarily over websockets. Add your own tiles in `tiles/`.
+Glances is designed to be displayed on a monitor and works primarily over websockets. Built with React and Socket.io for lightning fast updates.
 
 ## Usage
 
@@ -26,6 +26,7 @@ A tile may be either a function or an object and include the following keys:
 * moreInfo
 * color
 * position
+* display (see Tile Layouts below)
 
 Example:
 
@@ -47,7 +48,18 @@ module.exports = function(emit) {
 
 Tip: Treat your tile objects as immutable to avoid sneaky bugs.
 
-# TODO
+## Tile Layouts
+
+Currently supported tile layouts:
+
+* standard
+* ticker
+* list
+
+For ticker and list types, pass a key/value object, a flat array, or an array of pairs as the `value`.
+
+## TODO
 
 * [ ] More robust scheduler
-* [ ] More robust value types based on data structures or setting
+* [x] More robust value types based on data structures or setting
+* [ ] Dynamic tile routes to POST data
