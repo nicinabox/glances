@@ -4,7 +4,7 @@
   "description": "A heads-up dashboard for displaying thing-statuses",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test mocha",
     "start": "NODE_ENV=development nodemon server.js & webpack -wd",
     "prepublish": "webpack -p"
   },
@@ -34,9 +34,11 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-2": "^6.3.13",
     "css-loader": "^0.23.1",
+    "mocha": "^2.3.4",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
+    "unexpected": "^10.5.1",
     "webpack": "^1.12.11"
   }
 }
