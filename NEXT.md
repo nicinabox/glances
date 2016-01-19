@@ -10,14 +10,12 @@
 Tile plugins should be standalone, but may need configuration.
 
 ```
-// tile/example.js
-
-var tile = {
-  title: 'Example',
-  value: 'Hello'
-}
-
 export default {  
+  tile: {
+    title: 'Example',
+    value: 'Hello'
+  },
+  
   options: [
     {
       name: 'API_KEY',
@@ -32,12 +30,10 @@ export default {
     }
   ],
 
-  tile: function ({ emit, every }, options) {
+  render({ emit, every }, tile, options) {
     every(options.interval, function () {
       return Promise.resolve()
     })
-    
-    return tile
   }
 }
 
