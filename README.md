@@ -63,3 +63,8 @@ For ticker and list types, pass a key/value object, a flat array, or an array of
 * [ ] More robust scheduler
 * [x] More robust value types based on data structures or setting
 * [ ] Dynamic tile routes to POST data
+* [ ] Pluggable, reusable tiles (should be possible currently, but need to investigate)
+
+## Prior Art
+
+Glances was inspired by, and borrows heavily from [Dashing](http://dashing.io/) by Shopify. 
