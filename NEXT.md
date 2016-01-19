@@ -9,7 +9,7 @@
 
 Tile plugins should be standalone, but may need configuration.
 
-```
+```javascript
 export default {  
   tile: {
     title: 'Example',
