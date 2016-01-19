@@ -71,6 +71,7 @@ For ticker and list types, pass a key/value object, a flat array, or an array of
 * [x] More robust value types based on data structures or setting
 * [ ] Dynamic tile routes to POST data
 * [ ] Pluggable, reusable tiles (should be possible currently, but need to investigate)
+* [ ] Management UI to search, install, and configure tiles
 
 ## Prior Art
 
