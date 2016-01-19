@@ -4,6 +4,12 @@ A heads-up dashboard for displaying thing-statuses.
 
 ![](screenshot.png?raw=true)
 
+## Demo
+
+Example: https://github.com/nicinabox/glances-example
+
+Demo: https://glances-example.herokuapp.com/
+
 ## Overview
 
 Glances is designed to be displayed on a monitor and works primarily over websockets. Built with React and Socket.io for lightning fast updates.
