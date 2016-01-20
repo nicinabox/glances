@@ -1,7 +1,7 @@
 var path = require('path')
 var stack = require('callsite')
 var logger = require('./logger')
-var toMs = require('../app/lib/toMs')
+var toMs = require('./toMs')
 
 module.exports = function (intervalStr, desc, fn) {
   if (typeof desc == 'function') {
