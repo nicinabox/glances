@@ -3,6 +3,7 @@ var findIndex = require('lodash/findIndex')
 var reject = require('lodash/reject')
 var sortBy = require('lodash/sortBy')
 var every = require('./lib/every')
+var decorateState = require('./lib/decorateState')
 
 var state = {
   tiles: []
@@ -29,7 +30,7 @@ var initializeSchedules = function (tiles) {
 }
 
 var getTileStates = function () {
-  var tiles = state.tiles.map(function (t) { return t.state })
+  var tiles = state.tiles.map(decorateState)
   tiles = reject(tiles, function (t) { return t.disabled })
   tiles = sortBy(tiles, 'position')
   return tiles
@@ -61,9 +62,9 @@ module.exports = {
   initialize(rawTiles, io) {
     var emitChange = createEmitter(io)
     var tiles = setupTileSchedulers(rawTiles, emitChange)
-    setState({ tiles })
 
     initializeSchedules(tiles)
+    setState({ tiles })
 
     io.on('connection', emitChange)
   },
