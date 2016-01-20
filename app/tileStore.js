@@ -22,6 +22,7 @@ var setupTileMethods = function (rawTiles, emitChange) {
   }
 
   rawTiles.forEach(function (t) {
+    t.state = decorateState(t.state)
     t.onRequest = partial((t.onRequest || noop), utils)
     t.schedule = partial((t.schedule || noop), utils, t.options)
   })
