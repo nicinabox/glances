@@ -1,5 +1,6 @@
 var partial = require('lodash/partial')
 var findIndex = require('lodash/findIndex')
+var find = require('lodash/find')
 var reject = require('lodash/reject')
 var sortBy = require('lodash/sortBy')
 var every = require('./lib/every')
@@ -14,10 +15,14 @@ var setState = function (nextState) {
 }
 
 var setupTileSchedulers = function (rawTiles, emitChange) {
+  var utils = {
+    every, emitChange
+  }
+
   rawTiles.forEach(function (t) {
-    t.schedule = partial(t.schedule, {
-      every, emitChange
-    }, t.options)
+    t.state = decorateState(t)
+    t.onRequest = partial((t.onRequest || function () {}), utils)
+    t.schedule = partial(t.schedule, utils, t.options)
   })
 
   return rawTiles
@@ -62,10 +67,20 @@ module.exports = {
   initialize(rawTiles, io) {
     var emitChange = createEmitter(io)
     var tiles = setupTileSchedulers(rawTiles, emitChange)
-
     initializeSchedules(tiles)
-    setState({ tiles })
 
+    setState({ tiles })
     io.on('connection', emitChange)
   },
+
+  getTiles() {
+    return state.tiles
+  },
+
+  getTile(id) {
+    var tiles = state.tiles
+    return find(tiles, function (t) {
+      return t.state.id === id
+    })
+  }
 }
