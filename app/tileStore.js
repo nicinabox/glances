@@ -21,7 +21,6 @@ var setupTileMethods = function (rawTiles, emitChange) {
   }
 
   rawTiles.forEach(function (t) {
-    t.state = decorateState(t)
     t.onRequest = partial((t.onRequest || noop), utils)
     t.schedule = partial((t.schedule || noop), utils, t.options)
   })
@@ -30,19 +29,18 @@ var setupTileMethods = function (rawTiles, emitChange) {
 }
 
 var initializeSchedules = function (tiles) {
-  tiles.forEach(function (t) {
-    t.schedule()
-  })
+  tiles.forEach(function (t) { t.schedule() })
 }
 
 var getTileStates = function () {
-  var tiles = state.tiles.map(decorateState)
+  var tiles = state.tiles.map(function (t) { return t.state })
   tiles = reject(tiles, function (t) { return t.disabled })
   tiles = sortBy(tiles, 'position')
   return tiles
 }
 
 var updateTile = function (nextState) {
+  var nextState = decorateState(nextState)
   var tiles = state.tiles
 
   var index = findIndex(tiles, function (t) {
@@ -68,10 +66,13 @@ module.exports = {
   initialize(rawTiles, io) {
     var emitChange = createEmitter(io)
     var tiles = setupTileMethods(rawTiles, emitChange)
+
     initializeSchedules(tiles)
 
     setState({ tiles })
-    io.on('connection', emitChange)
+    io.on('connection', function () {
+      io.emit('tiles', getTileStates())
+    })
   },
 
   getTiles() {
