@@ -5,6 +5,7 @@ var reject = require('lodash/reject')
 var sortBy = require('lodash/sortBy')
 var noop = require('lodash/noop')
 var every = require('./lib/every')
+var logger = require('./lib/logger')
 var decorateState = require('./lib/decorateState')
 
 var state = {
@@ -17,7 +18,7 @@ var setState = function (nextState) {
 
 var setupTileMethods = function (rawTiles, emitChange) {
   var utils = {
-    every, emitChange
+    every, emitChange, logger
   }
 
   rawTiles.forEach(function (t) {
