@@ -21,7 +21,7 @@ module.exports = function (tiles) {
   io = require('socket.io')(server)
 
   requireTiles('tiles/*.js').then(function (rawTiles) {
-    tileStore.initialize(rawTiles.concat(tiles), io)
+    tileStore.initialize(rawTiles.concat(tiles || []), io)
   })
 
   io.on('connection', function () {
