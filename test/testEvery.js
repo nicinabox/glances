@@ -1,5 +1,5 @@
 var expect = require('unexpected')
-var every = require('../utils/every')
+var every = require('../app/lib/every')
 
 describe('every', () => {
   it('accepts interval and callback', (done) => {
