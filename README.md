@@ -37,18 +37,31 @@ A tile may be either a function or an object and include the following keys:
 Example:
 
 ```javascript
-module.exports = function(emit) {
-  every('5 minutes', function (next) {
-    emit({
-      name: 'Test',
-      value: isUp ? '✓' : ':(',
-      color: isUp ? 'green' : 'red'
-    })
-    next()
-  })
+var state = {
+  id: 'counter',
+  title: 'Counter',
+  color: 'teal',
+  value: 0
+}
 
-  return {
-    name: 'Test'
+module.exports = {
+  state,
+
+  onRequest($, body) {
+    Object.assign(state, {
+      value: +body.counter
+    })
+
+    return $.emitChange(state)
+  },
+
+  schedule($) {
+    $.every('2 sec', 'update counter', () => {
+      Object.assign(state, {
+        value: state.value + 1
+      })
+      return $.emitChange(state)
+    })
   }
 }
 ```
