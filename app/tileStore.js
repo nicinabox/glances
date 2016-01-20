@@ -3,6 +3,7 @@ var findIndex = require('lodash/findIndex')
 var find = require('lodash/find')
 var reject = require('lodash/reject')
 var sortBy = require('lodash/sortBy')
+var noop = require('lodash/noop')
 var every = require('./lib/every')
 var decorateState = require('./lib/decorateState')
 
@@ -14,15 +15,15 @@ var setState = function (nextState) {
   state = nextState
 }
 
-var setupTileSchedulers = function (rawTiles, emitChange) {
+var setupTileMethods = function (rawTiles, emitChange) {
   var utils = {
     every, emitChange
   }
 
   rawTiles.forEach(function (t) {
     t.state = decorateState(t)
-    t.onRequest = partial((t.onRequest || function () {}), utils)
-    t.schedule = partial(t.schedule, utils, t.options)
+    t.onRequest = partial((t.onRequest || noop), utils)
+    t.schedule = partial((t.schedule || noop), utils, t.options)
   })
 
   return rawTiles
@@ -66,7 +67,7 @@ var createEmitter = function (io) {
 module.exports = {
   initialize(rawTiles, io) {
     var emitChange = createEmitter(io)
-    var tiles = setupTileSchedulers(rawTiles, emitChange)
+    var tiles = setupTileMethods(rawTiles, emitChange)
     initializeSchedules(tiles)
 
     setState({ tiles })
