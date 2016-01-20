@@ -7,7 +7,7 @@ var logger = require('./lib/logger')
 
 var PORT = process.env.PORT || 4567
 
-module.exports = function () {
+module.exports = function (tiles) {
   var server, io, app = express()
 
   app.use(bodyParser.json())
@@ -21,7 +21,7 @@ module.exports = function () {
   io = require('socket.io')(server)
 
   requireTiles('tiles/*.js').then(function (rawTiles) {
-    tileStore.initialize(rawTiles, io)
+    tileStore.initialize(rawTiles.concat(tiles), io)
   })
 
   io.on('connection', function () {
