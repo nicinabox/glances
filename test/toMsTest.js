@@ -3,26 +3,31 @@ var toMs = require('../app/lib/toMs')
 
 describe('toMs', () => {
   it('matches second variations', () => {
-    expect(toMs('1 second'), 'to equal', 1000)
-    expect(toMs('1 sec'), 'to equal', 1000)
-    expect(toMs('1 s'), 'to equal', 1000)
+    ['second', 'sec', 's', 'seconds', 'secs'].forEach((unit) => {
+      expect(toMs('1 ' + unit), 'to equal', 1000)
+      expect(toMs('10 ' + unit), 'to equal', 1000 * 10)
+    })
   })
 
   it('matches minute variations', () => {
-    expect(toMs('1 minute'), 'to equal', 1000 * 60)
-    expect(toMs('1 min'), 'to equal', 1000 * 60)
-    expect(toMs('1 m'), 'to equal', 1000 * 60)
+    ['minute', 'min', 'm', 'minutes', 'mins'].forEach((unit) => {
+      expect(toMs('1 ' + unit), 'to equal', 1000 * 60)
+      expect(toMs('10 ' + unit), 'to equal', 1000 * 60 * 10)
+    })
   })
 
   it('matches hour variations', () => {
-    expect(toMs('1 hour'), 'to equal', 1000 * 60 * 60)
-    expect(toMs('1 hr'), 'to equal', 1000 * 60 * 60)
-    expect(toMs('1 h'), 'to equal', 1000 * 60 * 60)
+    ['hour', 'hr', 'hours', 'hrs'].forEach((unit) => {
+      expect(toMs('1 ' + unit), 'to equal', 1000 * 60 * 60)
+      expect(toMs('10 ' + unit), 'to equal', 1000 * 60 * 60 * 10)
+    })
   })
 
   it('matches day variations', () => {
-    expect(toMs('1 day'), 'to equal', 1000 * 60 * 60 * 24)
-    expect(toMs('1 d'), 'to equal', 1000 * 60 * 60 * 24)
+    ['day', 'd', 'days'].forEach((unit) => {
+      expect(toMs('1 ' + unit), 'to equal', 1000 * 60 * 60 * 24)
+      expect(toMs('10 ' + unit), 'to equal', 1000 * 60 * 60 * 24 * 10)
+    })
   })
 
   it('should not match bogus units', () => {
