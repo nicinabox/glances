@@ -14,19 +14,18 @@ Demo: https://glances-example.herokuapp.com/
 
 Glances is designed to be displayed on a monitor and works primarily over websockets. Built with React and Socket.io for lightning fast updates.
 
-## Usage
+## Basic Usage
 
 1. `npm install -S glances-app`
 2. `echo "require('glances-app')()" > server.js`
 3. Add tiles to `tiles/`
 4. Start your server: `npm start`
 
-And remember: it's just JavaScript, there's nothing fancy here.
-
 ## Tile Anatomy
 
 A tile may be either a function or an object and include the following keys:
 
+* id
 * title
 * value
 * moreInfo
@@ -66,8 +65,6 @@ module.exports = {
 }
 ```
 
-Tip: Treat your tile objects as immutable to avoid sneaky bugs.
-
 ## Tile Layouts
 
 Currently supported tile layouts:
@@ -77,6 +74,20 @@ Currently supported tile layouts:
 * list
 
 For ticker and list types, pass a key/value object, a flat array, or an array of pairs as the `value`.
+
+## Tile API
+
+### `state`
+
+The tile state object.
+
+### `onRequest`
+
+Called when tile receives a POST request.
+
+### `schedule`
+
+Called when tile receives a POST request.
 
 ## TODO
 
