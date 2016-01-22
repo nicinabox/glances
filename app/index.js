@@ -20,9 +20,13 @@ module.exports = function (tiles) {
 
   io = require('socket.io')(server)
 
-  requireTiles('tiles/*.js').then(function (rawTiles) {
-    tileStore.initialize(rawTiles.concat(tiles || []), io)
-  })
+  requireTiles('tiles/*.js')
+    .then(function (rawTiles) {
+      tileStore.initialize(rawTiles.concat(tiles || []), io)
+    })
+    .catch(function (err) {
+      logger.error(err.stack)
+    })
 
   io.on('connection', function () {
     logger.log('User connected')
