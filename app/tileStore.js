@@ -42,7 +42,12 @@ var getTileStates = function () {
 }
 
 var updateTile = function (nextState) {
-  var nextState = decorateState(nextState)
+  try {
+    nextState = decorateState(nextState)
+  } catch (e) {
+    logger.error(e)
+  }
+
   var tiles = state.tiles
 
   var index = findIndex(tiles, function (t) {
