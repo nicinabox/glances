@@ -1,6 +1,6 @@
 {
   "name": "glances-app",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.2",
   "description": "A heads-up dashboard for displaying thing-statuses",
   "main": "index.js",
   "scripts": {
