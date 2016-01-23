@@ -74,9 +74,9 @@ module.exports = {
     var emitChange = createEmitter(io)
     var tiles = setupTileMethods(rawTiles, emitChange)
 
+    setState({ tiles })
     initializeSchedules(tiles)
 
-    setState({ tiles })
     io.on('connection', function () {
       io.emit('tiles', getTileStates())
     })
