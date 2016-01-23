@@ -15,7 +15,7 @@ module.exports = {
 
   error: function () {
     if (process.env.NODE_ENV === 'test') return
-    var args = arguments
+    var args = toArray(arguments)
 
     if (args[0] instanceof Error) {
       args = args[0].message
