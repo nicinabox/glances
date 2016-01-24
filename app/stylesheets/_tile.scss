@@ -106,7 +106,12 @@ $base-size: 300px;
 
 @for $i from 1 through 4 {
   .span-#{$i} {
-    flex-basis: ($base-size * $i) + 10px;
+    @if $i > 1 {
+      flex-basis: ($base-size * $i) + 10px;
+    } @else {
+      flex-basis: ($base-size * $i);
+    }
+
     flex-grow: $i;
   }
 }
