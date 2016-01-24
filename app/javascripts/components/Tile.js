@@ -36,7 +36,7 @@ module.exports = React.createClass({
         <Value {...this.props} />
 
         <footer>
-          <p className="more-info">{this.props.moreInfo}</p>
+          <p className="more-info">{this.props.moreInfo || '\u00a0'}</p>
           <p className="updated-at">Updated {this.state.updatedAgo}</p>
         </footer>
       </div>
