@@ -23,17 +23,7 @@ Glances is designed to be displayed on a monitor and works primarily over websoc
 
 ## Tile Anatomy
 
-A tile may be either a function or an object and include the following keys:
-
-* id
-* title
-* value
-* moreInfo
-* color
-* position
-* display (see Tile Layouts below)
-
-Example:
+A tile is an object and structured like the following:
 
 ```javascript
 var state = {
@@ -80,6 +70,15 @@ For ticker and list types, pass a key/value object, a flat array, or an array of
 ### `state`
 
 The tile state object.
+
+* id
+* title
+* value
+* moreInfo
+* color
+* position
+* display (see Tile Layouts above)
+* span (1-4)
 
 ### `onRequest`
 
