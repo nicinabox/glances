@@ -1,6 +1,7 @@
 var partial = require('lodash/partial')
 var findIndex = require('lodash/findIndex')
 var find = require('lodash/find')
+var merge = require('lodash/merge')
 var reject = require('lodash/reject')
 var sortBy = require('lodash/sortBy')
 var noop = require('lodash/noop')
@@ -16,18 +17,33 @@ var setState = function (nextState) {
   state = nextState
 }
 
-var setupTileMethods = function (rawTiles, emitChange) {
+var initializeTiles = function (rawTiles, emitChange) {
   var utils = {
     every, emitChange, logger
   }
 
-  rawTiles.forEach(function (t) {
-    t.state = decorateState(t.state)
-    t.onRequest = partial((t.onRequest || noop), utils)
-    t.schedule = partial((t.schedule || noop), utils, t.options)
+  var defaults = {
+    state: {
+      id: '',
+      color: '',
+      position: null,
+      span: 1,
+    },
+    onRequest: noop,
+    schedule: noop,
+  }
+
+  var nextTiles = rawTiles.map(function (t) {
+    var tile = merge({}, defaults, t)
+
+    tile.state = decorateState(tile.state)
+    tile.onRequest = partial(tile.onRequest, utils)
+    tile.schedule = partial(tile.schedule, utils, tile.options)
+
+    return tile
   })
 
-  return rawTiles
+  return nextTiles
 }
 
 var initializeSchedules = function (tiles) {
@@ -55,7 +71,7 @@ var updateTile = function (nextState) {
   })
 
   if (index > -1) {
-    tiles[index].state = nextState
+    Object.assign(tiles[index].state, nextState)
     setState({ tiles })
   }
 }
@@ -72,7 +88,7 @@ var createEmitter = function (io) {
 module.exports = {
   initialize(rawTiles, io) {
     var emitChange = createEmitter(io)
-    var tiles = setupTileMethods(rawTiles, emitChange)
+    var tiles = initializeTiles(rawTiles, emitChange)
 
     setState({ tiles })
     initializeSchedules(tiles)

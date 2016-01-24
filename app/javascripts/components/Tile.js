@@ -28,7 +28,7 @@ module.exports = React.createClass({
   },
 
   render() {
-    var tileClassNames = ['tile', this.props.color].join(' ')
+    var tileClassNames = ['tile', this.props.color, `span-${this.props.span}`].join(' ')
 
     return (
       <div id={this.props.id} className={tileClassNames}>
