@@ -97,6 +97,7 @@ Called when tile receives a POST request.
 * [ ] Management UI to search, install, and configure tiles
 * [x] Improve error handling
 * [ ] Improve schedule api. Right now it's not obvious that id is required.
+* [ ] Custom tiles
 
 See [NEXT.md](NEXT.md) for brainstorming on upcoming todos.
 
