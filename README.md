@@ -14,6 +14,14 @@ Demo: https://glances-example.herokuapp.com/
 
 Glances is designed to be displayed on a monitor and works primarily over websockets. Built with React and Socket.io for lightning fast updates.
 
+### Features
+
+* Responsive, flexbox-based grid
+* Small, simple API
+* Easy deployment
+* Push data in with a request
+* Pull data in on a schedule
+
 ## Basic Usage
 
 1. `npm install -S glances-app`
@@ -67,11 +75,14 @@ For ticker and list types, pass a key/value object, a flat array, or an array of
 
 ## Tile API
 
+### `id`
+
+An identifier for the tile. If not specified, the file name will be used.
+
 ### `state`
 
 The tile state object.
 
-* id
 * title
 * value
 * moreInfo
@@ -82,11 +93,33 @@ The tile state object.
 
 ### `onRequest`
 
-Called when tile receives a POST request.
+Called when tile receives a POST request. Make a request:
+
+```
+POST /tiles/:id
+```
 
 ### `schedule`
 
-Called when tile receives a POST request.
+Define a schedule for the tile.
+
+Accepts: utils
+
+## Utils
+
+### `every`
+
+Schedule tile updates every so often. Must return a Promise or call next from callback
+
+Accepts: interval, description (optional), callback
+
+Callback proviles `err`, `next`
+
+### `emitChange`
+
+Emit your new tile state
+
+Accepts: object
 
 ## TODO
 
