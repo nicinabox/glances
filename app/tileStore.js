@@ -17,9 +17,9 @@ var setState = function (nextState) {
   state = nextState
 }
 
-var initializeTiles = function (rawTiles, emitChange) {
-  var utils = {
-    every, emitChange, logger
+var initializeTiles = function (rawTiles, emit) {
+  var emitChangeFor = (id) => {
+    return (state) => emit(Object.assign({}, {id}, state))
   }
 
   var defaults = {
@@ -35,8 +35,9 @@ var initializeTiles = function (rawTiles, emitChange) {
 
   var nextTiles = rawTiles.map(function (t) {
     var tile = merge({}, defaults, t)
+    var utils = { every, logger }
+    utils.emitChange = emitChangeFor(t.id)
 
-    tile.state = decorateState(tile.state)
     tile.onRequest = partial(tile.onRequest, utils)
     tile.schedule = partial(tile.schedule, utils, tile.options)
 
@@ -67,12 +68,14 @@ var updateTile = function (nextState) {
   var tiles = state.tiles
 
   var index = findIndex(tiles, function (t) {
-    return t.state.id === nextState.id
+    return t.id === nextState.id
   })
 
   if (index > -1) {
     Object.assign(tiles[index].state, nextState)
     setState({ tiles })
+  } else {
+    logger.error('Tile not found', JSON.stringify(nextState))
   }
 }
 
@@ -105,7 +108,7 @@ module.exports = {
   getTile(id) {
     var tiles = state.tiles
     return find(tiles, function (t) {
-      return t.state.id === id
+      return t.id === id
     })
   }
 }
