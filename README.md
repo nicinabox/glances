@@ -90,13 +90,13 @@ Called when tile receives a POST request.
 
 ## TODO
 
-* [ ] More robust scheduler
 * [x] More robust value types based on data structures or setting
 * [x] Dynamic tile routes to POST data
 * [x] Pluggable, reusable tiles (should be possible currently, but need to investigate)
-* [ ] Management UI to search, install, and configure tiles
 * [x] Improve error handling
-* [ ] Improve schedule api. Right now it's not obvious that id is required.
+* [x] Improve schedule api. Right now it's not obvious that id is required.
+* [ ] More robust scheduler
+* [ ] Management UI to search, install, and configure tiles
 * [ ] Custom tiles
 
 See [NEXT.md](NEXT.md) for brainstorming on upcoming todos.
