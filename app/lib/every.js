@@ -3,6 +3,12 @@ var stack = require('callsite')
 var logger = require('./logger')
 var toMs = require('./toMs')
 
+/**
+ * Run a function every so often
+ * @param  {string}   intervalStr Format "1 second". Supports unit alts like s, sec, second
+ * @param  {string}   desc        Optional description to display in logs
+ * @param  {Function} fn          Callback to run every interval. Provides `err, next`. Return a promise or call `next` to tick again
+ */
 module.exports = function (intervalStr, desc, fn) {
   if (typeof desc == 'function') {
     fn = desc

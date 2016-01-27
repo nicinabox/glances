@@ -7,6 +7,10 @@ var logger = require('./lib/logger')
 
 var PORT = process.env.PORT || 4567
 
+/**
+ * Start the glances server
+ * @param  {array} tiles accepts tiles to be initialized. Tiles in tiles/ will be required by automatically.
+ */
 module.exports = function (tiles) {
   var server, io, app = express()
 

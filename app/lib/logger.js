@@ -6,6 +6,9 @@ var makeLine = function (prefix, args) {
 }
 
 module.exports = {
+  /**
+   * Log to console. Works like console.log
+   */
   log: function () {
     if (process.env.NODE_ENV === 'test') return
 
@@ -13,6 +16,9 @@ module.exports = {
     console.log.apply(console, makeLine(chalk.green('-->'), args))
   },
 
+  /**
+   * Log error to console. Works like console.log
+   */
   error: function () {
     if (process.env.NODE_ENV === 'test') return
     var args = toArray(arguments)
