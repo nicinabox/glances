@@ -14,9 +14,9 @@ var matchIntervalParts = function (str) {
   if (matches) {
     return {
       interval: +matches[1],
-      unit: matches[2] && matches[2].length > 1 ?
-        matches[2].replace(/s$/, '') :
-        matches[2]
+      unit: matches[2] && matches[2].length > 1
+        ? matches[2].replace(/s$/, '')
+        : matches[2]
     }
   }
 }
