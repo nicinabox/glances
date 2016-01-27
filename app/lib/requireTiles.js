@@ -4,7 +4,13 @@ var _reject = require('lodash/reject')
 
 var requireFilePaths = function (files) {
   return files.map(function (f) {
-    return require(path.resolve(f))
+    var t = require(path.resolve(f))
+
+    t.state = Object.assign({}, {
+      id: path.basename(f, '.js')
+    }, t.state)
+
+    return t
   })
 }
 
