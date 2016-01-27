@@ -24,7 +24,6 @@ var initializeTiles = function (rawTiles, emit) {
 
   var defaults = {
     state: {
-      id: '',
       color: '',
       position: null,
       span: 1,
